@@ -22,6 +22,20 @@ import {
   editMotifBarang,
   getMotifBarang,
   hapusMotifBarang,
+
+  //tekstur
+  getAllTeksturBarang,
+  tambahTeksturBarang,
+  editTeksturBarang,
+  getTeksturBarang,
+  hapusTeksturBarang,
+
+  //ukuran
+  getAllUkuranBarang,
+  tambahUkuranBarang,
+  editUkuranBarang,
+  getUkuranBarang,
+  hapusUkuranBarang,
 } from "../../controllers/products/index.mjs";
 
 const router = express.Router();
@@ -48,5 +62,19 @@ router.get("/motif-barang/:slug", getMotifBarang);
 router.post("/motif-barang", tambahMotifBarang);
 router.patch("/motif-barang/:slug", editMotifBarang);
 router.delete("/motif-barang/:slug", hapusMotifBarang);
+
+//tekstur
+router.get("/tekstur-barang", getAllTeksturBarang);
+router.get("/tekstur-barang/:slug", getTeksturBarang);
+router.post("/tekstur-barang", tambahTeksturBarang);
+router.patch("/tekstur-barang/:slug", editTeksturBarang);
+router.delete("/tekstur-barang/:slug", hapusTeksturBarang);
+
+//ukuran
+router.get("/ukuran-barang", getAllUkuranBarang);
+router.get("/ukuran-barang/:slug", getUkuranBarang);
+router.post("/ukuran-barang", tambahUkuranBarang);
+router.patch("/ukuran-barang/:slug", editUkuranBarang);
+router.delete("/ukuran-barang/:slug", hapusUkuranBarang);
 
 export { router as barangRouter };

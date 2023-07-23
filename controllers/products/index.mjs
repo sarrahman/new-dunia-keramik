@@ -27,6 +27,24 @@ import {
   hapusMotifBarang,
 } from "./motif/index.mjs";
 
+//tekstur
+import {
+  getAllTeksturBarang,
+  tambahTeksturBarang,
+  editTeksturBarang,
+  getTeksturBarang,
+  hapusTeksturBarang,
+} from "./tekstur/index.mjs";
+
+//ukuran
+import {
+  getAllUkuranBarang,
+  tambahUkuranBarang,
+  editUkuranBarang,
+  getUkuranBarang,
+  hapusUkuranBarang,
+} from "./ukuran/index.mjs";
+
 export {
   getAllBarang,
 
@@ -50,4 +68,18 @@ export {
   editMotifBarang,
   getMotifBarang,
   hapusMotifBarang,
+
+  //tekstur
+  getAllTeksturBarang,
+  tambahTeksturBarang,
+  editTeksturBarang,
+  getTeksturBarang,
+  hapusTeksturBarang,
+
+  //ukuran
+  getAllUkuranBarang,
+  tambahUkuranBarang,
+  editUkuranBarang,
+  getUkuranBarang,
+  hapusUkuranBarang,
 };
