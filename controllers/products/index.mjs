@@ -1,4 +1,10 @@
-import getAllBarang from "./barang/getAllData/index.mjs";
+import {
+  getAllBarang,
+  getBarang,
+  tambahBarang,
+  hapusBarang,
+  editBarang,
+} from "./barang/index.mjs";
 
 //kategori
 import {
@@ -46,7 +52,12 @@ import {
 } from "./ukuran/index.mjs";
 
 export {
+  //barang
   getAllBarang,
+  getBarang,
+  tambahBarang,
+  hapusBarang,
+  editBarang,
 
   //kategori barang
   getAllKategoriBarang,

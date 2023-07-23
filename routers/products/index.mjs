@@ -1,6 +1,10 @@
 import express from "express";
 import {
   getAllBarang,
+  getBarang,
+  tambahBarang,
+  hapusBarang,
+  editBarang,
 
   //kategori
   getAllKategoriBarang,
@@ -40,7 +44,12 @@ import {
 
 const router = express.Router();
 
+//barang
 router.get("/barang", getAllBarang);
+router.get("/barang/:slug", getBarang);
+router.post("/barang", tambahBarang);
+router.patch("/barang/:slug", editBarang);
+router.delete("/barang/:slug", hapusBarang);
 
 //kategori-barang
 router.get("/kategori-barang", getAllKategoriBarang);
