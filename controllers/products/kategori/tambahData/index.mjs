@@ -1,10 +1,10 @@
 import { tambahDataFirestore } from "../../../../functions/index.mjs";
 
 const tambahKategoriBarang = async (req, res) => {
-  const { nama_kategori_barang } = req.body;
+  const { nama } = req.body;
 
   // Validasi input
-  if (!nama_kategori_barang) {
+  if (!nama) {
     return res.status(400).json({
       status: 400,
       error: {
@@ -13,9 +13,7 @@ const tambahKategoriBarang = async (req, res) => {
         message: "Data tidak lengkap!",
         error: {
           fields: {
-            nama_kategori_barang: !nama_kategori_barang
-              ? "Nama Kategori harus diisi"
-              : "",
+            nama: !nama ? "Nama Kategori harus diisi" : "",
           },
         },
       },
@@ -24,7 +22,7 @@ const tambahKategoriBarang = async (req, res) => {
 
   try {
     const data = await tambahDataFirestore("kategori-barang", {
-      nama: nama_kategori_barang,
+      nama,
     });
 
     res.status(201).json({

@@ -1,11 +1,11 @@
 import { editDataFirestore } from "../../../../functions/index.mjs";
 
 const editUkuranBarang = async (req, res) => {
-  const { nama_ukuran } = req.body;
+  const { nama } = req.body;
   const { slug } = req.params;
 
   // Validasi input
-  if (!nama_ukuran) {
+  if (!nama) {
     return res.status(400).json({
       status: 400,
       error: {
@@ -14,7 +14,7 @@ const editUkuranBarang = async (req, res) => {
         message: "Data tidak lengkap!",
         error: {
           fields: {
-            nama_ukuran: !nama_ukuran ? "Nama Ukuran harus diisi" : "",
+            nama: !nama ? "Nama Ukuran harus diisi" : "",
           },
         },
       },
@@ -23,7 +23,7 @@ const editUkuranBarang = async (req, res) => {
 
   try {
     const data = await editDataFirestore("ukuran-barang", slug, {
-      nama: nama_ukuran,
+      nama,
     });
 
     res.status(201).json({
