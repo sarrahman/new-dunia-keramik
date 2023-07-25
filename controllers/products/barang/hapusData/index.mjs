@@ -1,3 +1,4 @@
+import algoliaIndex from "../../../../config/algolia.mjs";
 import { hapusDataFirestore } from "../../../../functions/index.mjs";
 
 export const hapusBarang = async (req, res) => {
@@ -5,6 +6,9 @@ export const hapusBarang = async (req, res) => {
 
   try {
     const data = await hapusDataFirestore("barang", slug);
+
+    // Hapus data pada Algolia
+    await algoliaIndex.deleteObject(slug);
 
     res.status(200).json({
       status: 200,

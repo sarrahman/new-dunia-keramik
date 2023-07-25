@@ -5,6 +5,7 @@ import {
   tambahBarang,
   hapusBarang,
   editBarang,
+  searchByAlgolia,
 
   //kategori
   getAllKategoriBarang,
@@ -46,6 +47,7 @@ const router = express.Router();
 
 //barang
 router.get("/barang", getAllBarang);
+router.get("/barang/search", searchByAlgolia);
 router.get("/barang/:slug", getBarang);
 router.post("/barang", tambahBarang);
 router.patch("/barang/:slug", editBarang);

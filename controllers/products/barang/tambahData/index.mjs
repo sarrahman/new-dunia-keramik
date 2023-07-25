@@ -1,3 +1,4 @@
+import algoliaIndex from "../../../../config/algolia.mjs";
 import firestore from "../../../../config/firestore.mjs";
 import { generateKodeBarang } from "../../../../functions/index.mjs";
 
@@ -51,6 +52,7 @@ export const tambahBarang = async (req, res) => {
     }
 
     const newData = {
+      objectID: slug, // Tambahkan objectID yang unik untuk algolia
       ...req.body,
       kode_barang,
       slug,
@@ -58,7 +60,20 @@ export const tambahBarang = async (req, res) => {
       updatedAt: Date.now(),
     };
 
+    const newDataAlgolia = {
+      objectID: slug, // Tambahkan objectID yang unik untuk algolia
+      ...req.body,
+      kode_barang,
+      images: "",
+      slug,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+
     await dataRef.set(newData);
+
+    // Menambahkan data ke indeks Algolia
+    await algoliaIndex.saveObject(newDataAlgolia);
 
     res.status(201).json({
       status: 201,

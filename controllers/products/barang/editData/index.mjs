@@ -1,3 +1,4 @@
+import algoliaIndex from "../../../../config/algolia.mjs";
 import firestore from "../../../../config/firestore.mjs";
 
 export const editBarang = async (req, res) => {
@@ -46,7 +47,18 @@ export const editBarang = async (req, res) => {
       updatedAt: Date.now(),
     };
 
+    const newDataAlgolia = {
+      ...req.body,
+      slug,
+      images: "",
+      kode_barang: data.kode_barang,
+      updatedAt: Date.now(),
+    };
+
     await firestore.collection("barang").doc(slug).update(newData);
+
+    // Update data pada Algolia
+    await algoliaIndex.saveObject(newDataAlgolia);
 
     res.status(200).json({
       status: 200,
