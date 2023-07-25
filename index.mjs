@@ -8,7 +8,11 @@ const port = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: ["dashboard-dunia-keramik.netlify.app", "dunia-keramik.netlify.app"],
+    origin: [
+      "https://dashboard-dunia-keramik.netlify.app",
+      "https://dunia-keramik.netlify.app",
+    ],
+    credentials: true,
   })
 );
 app.use(cookieParser());
