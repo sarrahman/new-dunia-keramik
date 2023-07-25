@@ -64,7 +64,7 @@ const masukUser = async (req, res) => {
       nama: user.nama,
       username: user.username,
     };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    const token = jwt.sign(payload, "sangatRahasia", {
       expiresIn: "7d",
     });
 

@@ -22,7 +22,7 @@ export const verifyToken = (req, res, next) => {
 
   jwt.verify(
     token,
-    process.env.JWT_SECRET,
+    "sangatRahasia",
     { expiresIn: "1d" },
     (err, decoded) => {
       if (err) {
