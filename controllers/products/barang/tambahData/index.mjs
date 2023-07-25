@@ -1,4 +1,5 @@
 import algoliaIndex from "../../../../config/algolia.mjs";
+import AWS from "../../../../config/amazon.mjs";
 import firestore from "../../../../config/firestore.mjs";
 import { generateKodeBarang } from "../../../../functions/index.mjs";
 
@@ -51,20 +52,33 @@ export const tambahBarang = async (req, res) => {
       };
     }
 
+    // simpan gambar ke S3
+    const s3 = new AWS.S3();
+
+    const uploadPromises = images.map(async (image, i) => {
+      const base64Data = image.replace(/^data:image\/\w+;base64,/, "");
+      const buffer = Buffer.from(base64Data, "base64");
+      const fileName = `${kode_barang}-${i}`;
+
+      const params = {
+        Bucket: "dunia-keramik",
+        Key: fileName,
+        Body: buffer,
+        ContentEncoding: "base64",
+        ContentType: "image/jpeg",
+      };
+
+      return s3.upload(params).promise();
+    });
+
+    const uploadResponses = await Promise.all(uploadPromises);
+    const imageUrls = uploadResponses.map((response) => response.Location);
+
     const newData = {
       objectID: slug, // Tambahkan objectID yang unik untuk algolia
       ...req.body,
+      images: imageUrls,
       kode_barang,
-      slug,
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-    };
-
-    const newDataAlgolia = {
-      objectID: slug, // Tambahkan objectID yang unik untuk algolia
-      ...req.body,
-      kode_barang,
-      images: "",
       slug,
       createdAt: Date.now(),
       updatedAt: Date.now(),
@@ -73,7 +87,7 @@ export const tambahBarang = async (req, res) => {
     await dataRef.set(newData);
 
     // Menambahkan data ke indeks Algolia
-    await algoliaIndex.saveObject(newDataAlgolia);
+    await algoliaIndex.saveObject(newData);
 
     res.status(201).json({
       status: 201,

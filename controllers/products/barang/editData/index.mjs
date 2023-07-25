@@ -47,18 +47,10 @@ export const editBarang = async (req, res) => {
       updatedAt: Date.now(),
     };
 
-    const newDataAlgolia = {
-      ...req.body,
-      slug,
-      images: "",
-      kode_barang: data.kode_barang,
-      updatedAt: Date.now(),
-    };
-
     await firestore.collection("barang").doc(slug).update(newData);
 
     // Update data pada Algolia
-    await algoliaIndex.saveObject(newDataAlgolia);
+    await algoliaIndex.saveObject(newData);
 
     res.status(200).json({
       status: 200,
