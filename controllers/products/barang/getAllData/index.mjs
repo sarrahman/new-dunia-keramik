@@ -1,15 +1,17 @@
 import { getAllDataFirestore } from "../../../../functions/getAllDataFirestore/index.mjs";
 
-// Mengambil data barang
 const getAllBarang = async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 25;
+  const motif = req.query.motif || null;
 
   try {
+    // Mengambil data barang dengan atau tanpa filter berdasarkan motif
     const { totalPages, totalData, data } = await getAllDataFirestore(
       "barang",
       page,
-      limit
+      limit,
+      motif
     );
 
     res.status(200).json({
