@@ -1,8 +1,11 @@
 import AWS from "aws-sdk";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 AWS.config.update({
   accessKeyId: "AKIASP75IWASUMBFKZGQ",
-  secretAccessKey: "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",
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: "ap-southeast-1",
 });
 

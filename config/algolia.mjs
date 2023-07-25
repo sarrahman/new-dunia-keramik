@@ -1,6 +1,9 @@
 import algoliasearch from "algoliasearch";
+import dotenv from "dotenv";
 
-const client = algoliasearch("Y4CKWHX4EX", "60af7d7b35b4f6a68fdfa36b20179abd");
+dotenv.config();
+
+const client = algoliasearch("Y4CKWHX4EX", process.env.ALGOLIA_SECRET_KEY);
 const algoliaIndex = client.initIndex("barang");
 
 export default algoliaIndex;
