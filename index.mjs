@@ -6,7 +6,12 @@ import router from "./routers/index.mjs";
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "dashboard-dunia-keramik.netlify.app",
+    credentials: true,
+  })
+);
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" }));
 app.use(router);
