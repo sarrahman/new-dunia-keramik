@@ -16,6 +16,15 @@ import {
   editKategoriBarang,
 } from "./kategori/index.mjs";
 
+//kualitas
+import {
+  getAllKualitasBarang,
+  tambahKualitasBarang,
+  editKualitasBarang,
+  getKualitasBarang,
+  hapusKualitasBarang,
+} from "./kualitas/index.mjs";
+
 //merk
 import {
   getAllMerkBarang,
@@ -95,4 +104,11 @@ export {
   editUkuranBarang,
   getUkuranBarang,
   hapusUkuranBarang,
+
+  //kualitas
+  getAllKualitasBarang,
+  tambahKualitasBarang,
+  editKualitasBarang,
+  getKualitasBarang,
+  hapusKualitasBarang,
 };

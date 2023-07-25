@@ -41,6 +41,13 @@ import {
   editUkuranBarang,
   getUkuranBarang,
   hapusUkuranBarang,
+
+  //kualitas
+  getAllKualitasBarang,
+  tambahKualitasBarang,
+  editKualitasBarang,
+  getKualitasBarang,
+  hapusKualitasBarang,
 } from "../../controllers/products/index.mjs";
 
 const router = express.Router();
@@ -87,5 +94,12 @@ router.get("/ukuran-barang/:slug", getUkuranBarang);
 router.post("/ukuran-barang", tambahUkuranBarang);
 router.patch("/ukuran-barang/:slug", editUkuranBarang);
 router.delete("/ukuran-barang/:slug", hapusUkuranBarang);
+
+//kualitas
+router.get("/kualitas-barang", getAllKualitasBarang);
+router.get("/kualitas-barang/:slug", getKualitasBarang);
+router.post("/kualitas-barang", tambahKualitasBarang);
+router.patch("/kualitas-barang/:slug", editKualitasBarang);
+router.delete("/kualitas-barang/:slug", hapusKualitasBarang);
 
 export { router as barangRouter };
