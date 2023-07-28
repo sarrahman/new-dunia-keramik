@@ -5,17 +5,17 @@ dotenv.config();
 
 export const verifyToken = (req, res, next) => {
   const { authorization } = req.headers;
-  const { tx } = req.cookies;
+  // const { tx } = req.cookies;
 
-  if (!tx) {
+  if (!authorization) {
     return res.status(401).json({
       status: 401,
       message: "Silakan login terlebih dahulu",
     });
   }
 
-  // const token = authorization.split(" ")[1];
-  const token = tx;
+  const token = authorization.split(" ")[1];
+  // const token = tx;
   if (!token) {
     return res.status(401).json({
       status: 401,
