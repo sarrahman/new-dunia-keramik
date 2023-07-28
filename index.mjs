@@ -11,6 +11,7 @@ app.use(
     origin: [
       "https://dashboard-dunia-keramik.netlify.app",
       "https://dunia-keramik.netlify.app",
+      "https://duniakeramik.com",
       "http://localhost:3002",
       "http://localhost:3000",
     ],
