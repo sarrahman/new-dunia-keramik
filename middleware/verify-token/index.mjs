@@ -5,14 +5,17 @@ dotenv.config();
 
 export const verifyToken = (req, res, next) => {
   const { authorization } = req.headers;
-  if (!authorization) {
+  const { tx } = req.cookies;
+
+  if (!tx) {
     return res.status(401).json({
       status: 401,
       message: "Silakan login terlebih dahulu",
     });
   }
 
-  const token = authorization.split(" ")[1];
+  // const token = authorization.split(" ")[1];
+  const token = tx;
   if (!token) {
     return res.status(401).json({
       status: 401,
@@ -20,19 +23,14 @@ export const verifyToken = (req, res, next) => {
     });
   }
 
-  jwt.verify(
-    token,
-    "sangatRahasia",
-    { expiresIn: "1d" },
-    (err, decoded) => {
-      if (err) {
-        return res.status(401).json({
-          status: 401,
-          message: "Token tidak valid atau sudah kadaluwarsa",
-        });
-      }
-      req.user = decoded;
-      next();
+  jwt.verify(token, "sangatRahasia", { expiresIn: "1d" }, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({
+        status: 401,
+        message: "Token tidak valid atau sudah kadaluwarsa",
+      });
     }
-  );
+    req.user = decoded;
+    next();
+  });
 };
