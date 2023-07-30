@@ -1,4 +1,4 @@
-// import algoliaIndex from "../../../../config/algolia.mjs";
+import algoliaIndex from "../../../../config/algolia.mjs";
 import firestore from "../../../../config/firestore.mjs";
 
 export const editBarang = async (req, res) => {
@@ -49,8 +49,8 @@ export const editBarang = async (req, res) => {
 
     await firestore.collection("barang").doc(slug).update(newData);
 
-    // // Update data pada Algolia
-    // await algoliaIndex.saveObject(newData);
+    // Update data pada Algolia
+    await algoliaIndex.saveObject(newData);
 
     res.status(200).json({
       status: 200,
