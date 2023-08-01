@@ -10,7 +10,9 @@ export async function getAllDataFirestore(
 ) {
   let query = firestore.collection(namaCollection);
 
-  if (motif) {
+  if (motif && ukuran) {
+    query = query.where("motif", "==", motif).where("ukuran", "==", ukuran);
+  } else if (motif) {
     query = query.where("motif", "==", motif);
   } else if (merk) {
     query = query.where("merk", "==", merk);
