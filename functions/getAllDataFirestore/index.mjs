@@ -1,11 +1,21 @@
 import firestore from "../../config/firestore.mjs";
 
-export async function getAllDataFirestore(namaCollection, page, limit, motif) {
+export async function getAllDataFirestore(
+  namaCollection,
+  page,
+  limit,
+  motif,
+  merk,
+  ukuran
+) {
   let query = firestore.collection(namaCollection);
 
-  // Jika motif diberikan, tambahkan filter berdasarkan motif
   if (motif) {
     query = query.where("motif", "==", motif);
+  } else if (merk) {
+    query = query.where("merk", "==", merk);
+  } else if (ukuran) {
+    query = query.where("ukuran", "==", ukuran);
   }
 
   const snapshot = await query
