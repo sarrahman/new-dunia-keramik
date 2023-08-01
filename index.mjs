@@ -1,4 +1,5 @@
 import express from "express";
+import requestIp from "request-ip";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import router from "./routers/index.mjs";
@@ -21,6 +22,7 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" }));
+app.use(requestIp.mw());
 app.use(router);
 
 process.on("unhandledRejection", (reason, promise) => {

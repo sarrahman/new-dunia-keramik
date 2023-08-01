@@ -3,6 +3,7 @@ import firestore from "../../../config/firestore.mjs";
 // mengambil profil user yang sedang login
 const getCurrentUserLogin = async (req, res) => {
   try {
+    const clientIp = req.clientIp;
     // Cek apakah username sudah ada
     const snapshot = await firestore
       .collection("users")
@@ -26,6 +27,7 @@ const getCurrentUserLogin = async (req, res) => {
       success: true,
       message: "Data user ditemukan",
       data: user,
+      ip: clientIp,
     });
   } catch (error) {
     return res.status(error.response.status).json({
