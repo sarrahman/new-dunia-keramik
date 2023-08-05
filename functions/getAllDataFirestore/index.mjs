@@ -6,18 +6,29 @@ export async function getAllDataFirestore(
   limit,
   motif,
   merk,
-  ukuran
+  ukuran,
+  tekstur
 ) {
   let query = firestore.collection(namaCollection);
 
-  if (motif && ukuran) {
+  if (motif && ukuran && tekstur) {
+    query = query
+      .where("motif", "==", motif)
+      .where("ukuran", "==", ukuran)
+      .where("tekstur", "==", tekstur);
+    console.log(1);
+  } else if (motif && ukuran) {
     query = query.where("motif", "==", motif).where("ukuran", "==", ukuran);
+    console.log(2);
   } else if (motif) {
     query = query.where("motif", "==", motif);
+    console.log(3);
   } else if (merk) {
     query = query.where("merk", "==", merk);
+    console.log(4);
   } else if (ukuran) {
     query = query.where("ukuran", "==", ukuran);
+    console.log(5);
   }
 
   const snapshot = await query

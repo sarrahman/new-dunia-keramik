@@ -6,6 +6,7 @@ const getAllBarang = async (req, res) => {
   const motif = req.query.motif || null;
   const merk = req.query.merk || null;
   const ukuran = req.query.ukuran || null;
+  const tekstur = req.query.tekstur || null;
 
   try {
     // Mengambil data barang dengan atau tanpa filter berdasarkan motif
@@ -15,7 +16,8 @@ const getAllBarang = async (req, res) => {
       limit,
       motif,
       merk,
-      ukuran
+      ukuran,
+      tekstur
     );
 
     res.status(200).json({
