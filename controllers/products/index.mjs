@@ -5,6 +5,7 @@ import {
   hapusBarang,
   editBarang,
   searchByAlgolia,
+  getAllNewBarang,
 } from "./barang/index.mjs";
 
 //kategori
@@ -69,6 +70,7 @@ export {
   hapusBarang,
   editBarang,
   searchByAlgolia,
+  getAllNewBarang,
 
   //kategori barang
   getAllKategoriBarang,

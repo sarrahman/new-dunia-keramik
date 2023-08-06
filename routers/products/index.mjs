@@ -48,12 +48,14 @@ import {
   editKualitasBarang,
   getKualitasBarang,
   hapusKualitasBarang,
+  getAllNewBarang,
 } from "../../controllers/products/index.mjs";
 
 const router = express.Router();
 
 //barang
 router.get("/barang", getAllBarang);
+router.get("/barang/new", getAllNewBarang);
 router.get("/barang/search", searchByAlgolia);
 router.get("/barang/:slug", getBarang);
 router.post("/barang", tambahBarang);

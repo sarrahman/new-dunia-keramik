@@ -1,5 +1,6 @@
 import editBarang from "./editData/index.mjs";
 import getAllBarang from "./getAllData/index.mjs";
+import getAllNewBarang from "./getAllNewBarang/index.mjs";
 import getBarang from "./getData/index.mjs";
 import hapusBarang from "./hapusData/index.mjs";
 import searchByAlgolia from "./searchByAlgolia/index.mjs";
@@ -12,4 +13,5 @@ export {
   hapusBarang,
   editBarang,
   searchByAlgolia,
+  getAllNewBarang,
 };
