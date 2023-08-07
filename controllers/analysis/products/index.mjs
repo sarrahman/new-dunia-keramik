@@ -4,7 +4,7 @@ const groupByCriteria = (data) => {
   const groupedData = {};
 
   data.forEach((barang) => {
-    const key = `${barang.kategori}-${barang.motif}-${barang.tekstur}-${barang.ukuran}`;
+    const key = `${barang.kategori}-${barang.motif}-${barang.tekstur}-${barang.ukuran}-${barang.kualitas}`;
     if (!groupedData[key]) {
       groupedData[key] = [];
     }
@@ -66,7 +66,7 @@ const analysisBarang = async (req, res) => {
       });
     });
 
-    // Kelompokkan data barang berdasarkan kategori, motif, tekstur, dan ukuran yang sama
+    // Kelompokkan data barang berdasarkan kategori, motif, tekstur, ukuran, dan kualitas yang sama
     const groupedData = groupByCriteria(data);
 
     // Analisis harga
